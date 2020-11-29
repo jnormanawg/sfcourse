@@ -21,6 +21,7 @@ class MainController extends AbstractController
      * @Route("/custom/{name?}", name="custom")
      */
     public function custom(Request $request){
+        dump($request);
         $name = $request->get('name');
         return new Response( '<h1>Welcome ' . $name . '</h1>');
     }
