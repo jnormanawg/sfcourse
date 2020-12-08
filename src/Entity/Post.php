@@ -22,6 +22,16 @@ class Post
      */
     private $title;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastname;
+
     public function getId(): ?int
     {
         return $this->id;

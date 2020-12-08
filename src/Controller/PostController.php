@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
 /**
  * @Route("/post", name="post.")
  */
@@ -37,6 +39,7 @@ class PostController extends AbstractController
     public function create(Request $request){
 
         $post = new Post();
+        dump($post);
 
         //$post->setTitle('This is the new text string');
 
@@ -89,6 +92,56 @@ class PostController extends AbstractController
         $this->addFlash('success' , 'Post was removed' );
 
         return $this->redirect($this->generateUrl( 'post.index'));
+    }
+
+    /**
+     * @Route("/tprbatches", name="tprBatches")
+     * @param Request $request
+     */
+
+    public function tprBatches(Request $request){
+
+        $conn = $this->getDoctrine()->getConnection();
+
+        $sql = 'SELECT * FROM reports';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $tprBatches = $stmt->fetchAll();
+        //$tprBatches = $post;
+
+        return $this->render('post/tprbatches.html.twig', [
+            'tprbatches' => $tprBatches
+        ]);
+
+//        var_dump($stmt->fetchAll());die;
+    }
+
+    /**
+     * @Route("/tprbatch/{id}", name="tprbatch")
+     * @param Post $post
+     */
+
+    public function tprbatch(Post $post){
+
+        $id = $post->getId();
+
+        var_dump($post);
+        die;
+
+        $conn = $this->getDoctrine()->getConnection();
+        $sql = 'SELECT * FROM reports where id = 1';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $tprBatch = $stmt->fetchAll();
+        //$tprBatch = $post;
+
+        return $this->render('post/tprbatch.html.twig', [
+            'tprbatch' => $tprBatch
+        ]);
+
+//        var_dump($stmt->fetchAll());die;
     }
 
 }
