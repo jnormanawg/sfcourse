@@ -39,7 +39,6 @@ class PostController extends AbstractController
     public function create(Request $request){
 
         $post = new Post();
-        dump($post);
 
         //$post->setTitle('This is the new text string');
 
