@@ -15,7 +15,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('image', FileType::class)
+//            ->add('image', FileType::class)
             ->add('save' , SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary float-right'

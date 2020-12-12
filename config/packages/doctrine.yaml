@@ -12,9 +12,12 @@ doctrine:
             customer:
                 # configure these for your database server
                 url: '%env(DATABASE_CUSTOMER_URL)%'
-                driver: 'pdo_oci'
-                server_version: ~
-                charset: AL32UTF8
+                # driver: 'pdo_oci'
+                driver: 'pdo_mysql'
+                #server_version: ~
+                server_version: '5.7'
+                #charset: AL32UTF8
+                charset: utf8mb4
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)

@@ -77,20 +77,20 @@ class __TwigTemplate_4ae25571acaa92cd5c2ac4b4c79c250e251994218c82a33f6b7dd80754d
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
         // line 20
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("custom", ["name" => "customName"]);
-        echo "\">Report 1</a>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("anker.costChangeHistory", ["name" => "newItemBatch"]);
+        echo "\">Cost Change History</a>
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
         // line 23
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("custom", ["name" => "customName"]);
-        echo "\">Report 2</a>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("anker.priceChangeHistory", ["name" => "newItemBatch"]);
+        echo "\">Price Change History</a>
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
         // line 26
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("custom", ["name" => "customName"]);
-        echo "\">Report 3</a>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("anker.newItemBatch", ["name" => "newItemBatch"]);
+        echo "\">New Item History</a>
                 </li>
                 ";
         // line 28
@@ -239,13 +239,13 @@ class __TwigTemplate_4ae25571acaa92cd5c2ac4b4c79c250e251994218c82a33f6b7dd80754d
         <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
             <ul class=\"navbar-nav mr-auto\">
                 <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"{{ path('custom' , {name: 'customName'}) }}\">Report 1</a>
+                    <a class=\"nav-link\" href=\"{{ path('anker.costChangeHistory' , {name: 'newItemBatch'}) }}\">Cost Change History</a>
                 </li>
                 <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"{{ path('custom' , {name: 'customName'}) }}\">Report 2</a>
+                    <a class=\"nav-link\" href=\"{{ path('anker.priceChangeHistory' , {name: 'newItemBatch'}) }}\">Price Change History</a>
                 </li>
                 <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"{{ path('custom' , {name: 'customName'}) }}\">Report 3</a>
+                    <a class=\"nav-link\" href=\"{{ path('anker.newItemBatch' , {name: 'newItemBatch'}) }}\">New Item History</a>
                 </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class=\"nav-item float-right\">

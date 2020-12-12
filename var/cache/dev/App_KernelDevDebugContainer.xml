@@ -147,6 +147,7 @@
     <parameter key="doctrine.dbal.connection_factory.types" type="collection"/>
     <parameter key="doctrine.connections" type="collection">
       <parameter key="default">doctrine.dbal.default_connection</parameter>
+      <parameter key="customer">doctrine.dbal.customer_connection</parameter>
     </parameter>
     <parameter key="doctrine.default_connection">default</parameter>
     <parameter key="doctrine.orm.configuration.class">Doctrine\ORM\Configuration</parameter>
@@ -2621,6 +2622,10 @@
         <argument>default</argument>
         <argument type="service" id="doctrine.dbal.logger.profiling.default"/>
       </call>
+      <call method="addLogger">
+        <argument>customer</argument>
+        <argument type="service" id="doctrine.dbal.logger.profiling.customer"/>
+      </call>
     </service>
     <service id="doctrine.dbal.connection_factory" class="Doctrine\Bundle\DoctrineBundle\ConnectionFactory">
       <argument type="collection"/>
@@ -2713,13 +2718,15 @@
     </service>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection" public="true">
       <argument type="collection">
-        <argument key="url">%env(resolve:DATABASE_URL)%</argument>
+        <argument key="url">%env(DATABASE_URL)%</argument>
+        <argument key="driver">pdo_mysql</argument>
+        <argument key="charset">utf8mb4</argument>
         <argument key="host">localhost</argument>
         <argument key="port">null</argument>
         <argument key="user">root</argument>
         <argument key="password">null</argument>
-        <argument key="driver">pdo_mysql</argument>
         <argument key="driverOptions" type="collection"/>
+        <argument key="serverVersion" type="string">5.7</argument>
         <argument key="defaultTableOptions" type="collection"/>
       </argument>
       <argument type="service" id="doctrine.dbal.default_connection.configuration"/>
@@ -2738,6 +2745,50 @@
           <argument>default</argument>
         </service>
       </argument>
+    </service>
+    <service id="doctrine.dbal.customer_connection.configuration" class="Doctrine\DBAL\Configuration" public="false">
+      <call method="setSQLLogger">
+        <argument type="service" id="doctrine.dbal.logger.chain.customer"/>
+      </call>
+    </service>
+    <service id="doctrine.dbal.logger.profiling.customer" class="Doctrine\DBAL\Logging\DebugStack" public="false"/>
+    <service id="doctrine.dbal.logger.chain.customer" class="Doctrine\DBAL\Logging\LoggerChain" public="false">
+      <call method="addLogger">
+        <argument type="service" id="doctrine.dbal.logger"/>
+      </call>
+      <call method="addLogger">
+        <argument type="service" id="doctrine.dbal.logger.profiling.customer"/>
+      </call>
+    </service>
+    <service id="doctrine.dbal.customer_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager" public="false">
+      <argument type="service" id=".service_locator.xxFfgCP"/>
+      <call method="addEventSubscriber">
+        <argument type="service" id="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber"/>
+      </call>
+      <call method="addEventListener">
+        <argument type="collection">
+          <argument>loadClassMetadata</argument>
+        </argument>
+        <argument>doctrine.orm.default_listeners.attach_entity_listeners</argument>
+      </call>
+    </service>
+    <service id="doctrine.dbal.customer_connection" class="Doctrine\DBAL\Connection" public="true">
+      <argument type="collection">
+        <argument key="url">%env(DATABASE_CUSTOMER_URL)%</argument>
+        <argument key="driver">pdo_mysql</argument>
+        <argument key="charset">utf8mb4</argument>
+        <argument key="host">localhost</argument>
+        <argument key="port">null</argument>
+        <argument key="user">root</argument>
+        <argument key="password">null</argument>
+        <argument key="driverOptions" type="collection"/>
+        <argument key="serverVersion" type="string">5.7</argument>
+        <argument key="defaultTableOptions" type="collection"/>
+      </argument>
+      <argument type="service" id="doctrine.dbal.customer_connection.configuration"/>
+      <argument type="service" id="doctrine.dbal.customer_connection.event_manager"/>
+      <argument type="collection"/>
+      <factory service="doctrine.dbal.connection_factory" method="createConnection"/>
     </service>
     <service id=".1_ServiceLocator~YPjfjDE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <argument type="collection"/>
