@@ -56,7 +56,7 @@ class AnkerController extends AbstractController
 
     public function costChangeHistory(Request $request){
 
-        $conn = $this->getDoctrine()->getConnection();
+        $conn = $this->getDoctrine()->getConnection('reports');
 
         $sql = 'SELECT
     1 ITEM_ID,
@@ -100,7 +100,7 @@ class AnkerController extends AbstractController
     39 AS CUR_COST,
     40         AS FUT_COST_DATE
 FROM
-REPORTS';
+REPORT_NAMES';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
@@ -121,7 +121,7 @@ REPORTS';
 
     public function priceChangeHistory(Request $request){
 
-        $conn = $this->getDoctrine()->getConnection();
+        $conn = $this->getDoctrine()->getConnection('reports');
 
         $sql = 'SELECT
     1 ITEM_ID,
@@ -165,7 +165,7 @@ REPORTS';
     39 AS CUR_COST,
     40         AS FUT_COST_DATE
 FROM
-REPORTS';
+REPORT_NAMES';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
@@ -179,6 +179,43 @@ REPORTS';
 //        var_dump($stmt->fetchAll());die;
     }
 
+    /**
+     * @Route("/newmenu", name="newmenu")
+     * @param Request $request
+     */
+
+    public function newmenu(Request $request)
+    {
+
+        $conn = $this->getDoctrine()->getConnection('reports');
+        $sql = 'select id , title from report_names';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $product = $stmt->fetchAll();
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $productId
+            );
+        }
+
+//        $model = new model();
+        $form = $this->createFormBuilder()
+            ->add('brand_id', ChoiceType::class, array(
+                'label' => 'Brand Name',
+                'choices' => array($product),
+                'choice_label' => function ($product, $key, $index) {
+                    return strtoupper($product->getName());
+                },
+            ))
+            ->add('name', TextType::class, array('label' => 'Model Name'))
+            ->add('comment', TextType::class, array('label' => 'Comments'))
+            ->add('save', SubmitType::class, array('label' => 'Add Model'))
+            ->getForm();
+    }
+
      /**
      * @Route("/newItemBatch", name="newItemBatch")
      * @param Request $request
@@ -187,7 +224,7 @@ REPORTS';
     public function newItemBatch(Request $request){
 
         //$conn = $this->getDoctrine()->getConnection();
-        $conn = $this->getDoctrine()->getConnection('customer');
+        $conn = $this->getDoctrine()->getConnection('reports');
         //$conn = $this->get('doctrine')->getEntityManager('client');
         //dump($conn);
         //die;
@@ -234,7 +271,7 @@ REPORTS';
     39 AS CUR_COST,
     40         AS FUT_COST_DATE
 FROM
-REPORTS';
+REPORT_NAMES';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 //var_dump($stmt->fetchAll());die;

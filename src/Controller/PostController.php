@@ -42,7 +42,7 @@ class PostController extends AbstractController
 
         //$post->setTitle('This is the new text string');
 
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(ReportsType::class, $post);
 
         $form->handleRequest($request);
 
