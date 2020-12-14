@@ -17,8 +17,18 @@ class TaskController extends AbstractController
     /**
      * @Route("/task", name="task")
      */
-    public function task(Request $request): Response
+    public function task()
 {
+    $conn = $this->getDoctrine()->getConnection('reports');
+    $sql = 'select id , title from report_names';
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $posts = $stmt->fetchAll();
+//var_dump($posts);
+//    var_dump('line 22');
+//    die;
 // creates a task object and initializes some data for this example
 $task = new Task();
 //$task->setTask('Write a blog post');
@@ -30,6 +40,10 @@ $form = $this->createFormBuilder($task)
 ->add('save', SubmitType::class, ['label' => 'Create Task'])
 ->getForm();
 
-// ...
+        return $this->render('reports/index.html.twig', [
+            'controller_name' => 'ReportsController',
+            'posts' => $posts
+        ]);
+
 }
 }

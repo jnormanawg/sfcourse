@@ -42,6 +42,38 @@ class PostController extends AbstractController
 
         //$post->setTitle('This is the new text string');
 
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('post.index'));
+        }
+
+
+        //return a response or view
+        //return new Response( 'Post is committed');
+        return $this->render( 'post/create.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("/createTest", name="createTest")
+     * @param Request $request
+     */
+    public function createTest(Request $request){
+
+        $post = new Post();
+
+        //$post->setTitle('This is the new text string');
+
         $form = $this->createForm(ReportsType::class, $post);
 
         $form->handleRequest($request);
