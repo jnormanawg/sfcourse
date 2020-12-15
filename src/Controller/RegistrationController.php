@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\TEPORGANIZATION;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,6 +22,15 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+        $conn = $this->getDoctrine()->getConnection();
+        $sql = 'select DM_ORG_DESC from teporganization';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $orgs = $stmt->fetchAll();
+        dump($orgs);
+
         $form = $this->createFormBuilder()
             ->add('username')
             ->add('password' , RepeatedType::class, [
@@ -33,9 +44,22 @@ class RegistrationController extends AbstractController
                     'class' => 'btn btn-primary float-right'
                 ]
             ])
-        ->getForm()
+            ->add('isAttending', ChoiceType::class, [
+                'choices'  => [
+                    'Maybe' => null,
+                    'Yes' => true,
+                    'No' => false,
+                ],
+            ])
+            ->add('organization_id', ChoiceType::class, array(
+                'label' => 'Organization',
+                'choices' => array($orgs),
+                'choice_label' => function ($orgs, $key, $index) {
+                    return strtoupper($orgs);
+                },
+            ))
+            ->getForm()
         ;
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted()){
