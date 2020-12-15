@@ -20,9 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f26c74b-5b2c-4d8c-9980-0a6d89272082" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/homes/message.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AnkerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AnkerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReportsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReportsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/homes/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homes/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reports/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reports/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +159,7 @@
       <workItem from="1606072639720" duration="6234000" />
       <workItem from="1606597967550" duration="3830000" />
       <workItem from="1607797710301" duration="8000" />
-      <workItem from="1607797729192" duration="18443000" />
+      <workItem from="1607797729192" duration="39375000" />
     </task>
     <servers />
   </component>
@@ -171,10 +178,14 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607822446726">
+    <state x="937" y="328" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607961621047">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607822446726" />
+    <state x="937" y="328" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607961621047" />
+    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607974103212">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607974103212" />
     <state x="960" y="448" width="540" height="524" key="StructurePopup" timestamp="1606077760881">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

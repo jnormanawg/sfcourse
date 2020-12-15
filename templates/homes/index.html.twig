@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomesController!{% endblock %}
+{% block title %}Home page{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <section class="ui container">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Apache2.4/htdocs/sfcourse/src/Controller/HomesController.php'|file_link(0) }}">src/Controller/HomesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Apache2.4/htdocs/sfcourse/templates/homes/index.html.twig'|file_link(0) }}">templates/homes/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <form class="ui form" action="/anker/message" method="get">
+            <div class="field">
+                <label>Organizations:</label>
+                <select id="facilities" name="facilities">
+                    {% for orgs in organizations %}
+                        <option value="{{ orgs.T_EP_ORGANIZATION_EP_ID }}">{{ orgs.DM_ORG_DESC }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Facility:</label>
+                <input type="text" name="facilities">
+            </div>
+
+            <div class="field">
+                <label>Stores</label>
+                <input type="text" name="stores">
+            </div>
+
+            <button class="ui button" type="submit">Send</button>
+
+        </form>
+
+    </section>
+
 {% endblock %}

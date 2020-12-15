@@ -20,13 +20,13 @@ class TaskController extends AbstractController
     public function task()
 {
     $conn = $this->getDoctrine()->getConnection('reports');
-    $sql = 'select id , title from report_names';
+    $sql = 'select T_EP_ORGANIZATION_EP_ID , ORGANIZATION , DM_ORG_DESC from t_ep_organization';
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
-    $posts = $stmt->fetchAll();
-//var_dump($posts);
+    $organizations = $stmt->fetchAll();
+
 //    var_dump('line 22');
 //    die;
 // creates a task object and initializes some data for this example
@@ -42,7 +42,7 @@ $form = $this->createFormBuilder($task)
 
         return $this->render('reports/index.html.twig', [
             'controller_name' => 'ReportsController',
-            'posts' => $posts
+            'posts' => $organizations
         ]);
 
 }

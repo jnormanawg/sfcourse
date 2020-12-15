@@ -27,6 +27,32 @@ class AnkerController extends AbstractController
     }
 
     /**
+     * @Route("/message", name="message", methods="GET")
+     * @param Request $request
+     * @return Response
+     */
+
+    public function message(Request $request): Response
+    {
+        dump($request);
+
+        $facility = $request->query->get("facilities");
+        $store = $request->query->get("stores");
+
+        dump($facility);
+        dump($store);
+
+        die;
+
+        return $this->render('homes/index.html.twig', ["facility" => $facility,
+            "store" => $store]);
+
+//        return $this->render('homes/message.html.twig', [
+//            'controller_name' => 'AnkerController',
+//        ]);
+    }
+
+    /**
      * @Route("/tprbatches", name="tprBatches")
      * @param Request $request
      */

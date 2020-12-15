@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\TEPORGANIZATION;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -64,6 +65,48 @@ class DashboardController extends AbstractDashboardController
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
 
         return $this->redirect($routeBuilder->setController(PostCrudController::class)->generateUrl());
+
+        // you can also redirect to different pages depending on the current user
+        if ('jane' === $this->getUser()->getUsername()) {
+            return $this->redirect('...');
+        }
+
+        // you can also render some template to display a proper Dashboard
+        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
+        return $this->render('@EasyAdmin/page/content.html.twig');
+        //return parent::index();
+    }
+
+    /**
+     * @Route("/admin/organization", name="organization")
+     */
+    public function organization(Request $request)
+    {
+        // redirect to some CRUD controller
+        $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
+
+        return $this->redirect($routeBuilder->setController(TEPORGANIZATIONCrudController::class)->generateUrl());
+
+        // you can also redirect to different pages depending on the current user
+        if ('jane' === $this->getUser()->getUsername()) {
+            return $this->redirect('...');
+        }
+
+        // you can also render some template to display a proper Dashboard
+        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
+        return $this->render('@EasyAdmin/page/content.html.twig');
+        //return parent::index();
+    }
+
+    /**
+     * @Route("/admin/sites", name="sites")
+     */
+    public function sites(Request $request)
+    {
+        // redirect to some CRUD controller
+        $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
+
+        return $this->redirect($routeBuilder->setController(TEPSITECrudController::class)->generateUrl());
 
         // you can also redirect to different pages depending on the current user
         if ('jane' === $this->getUser()->getUsername()) {

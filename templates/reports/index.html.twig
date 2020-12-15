@@ -12,16 +12,16 @@
         <thead>
         <tr>
             <td>Id</td>
-            <td>Title</td>
-            <td>Actions</td>
+            <td>Organization</td>
+            <td>Org Description</td>
         </tr>
         </thead>
         <tbody>
-        {% for post in posts %}
+        {% for org in posts %}
             <tr>
-                <td>{{ post.id }}</td>
-                <td><a href="{{ path('post.show' , {id: post.id }) }}">{{ post.title }}</a></td>
-                <td><a class="text-danger" href="{{ path('post.delete' , {id: post.id }) }}">Delete</a></td>
+                <td>{{ org.T_EP_ORGANIZATION_EP_ID }}</td>
+                <td><a href="{{ path('post.show' , {id: org.T_EP_ORGANIZATION_EP_ID }) }}">{{ org.ORGANIZATION }}</a></td>
+                <td><a class="text-danger" href="{{ path('post.delete' , {id: org.T_EP_ORGANIZATION_EP_ID }) }}">Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>
