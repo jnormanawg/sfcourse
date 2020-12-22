@@ -22,6 +22,7 @@
     <list default="true" id="4f26c74b-5b2c-4d8c-9980-0a6d89272082" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,8 @@
       <workItem from="1606072639720" duration="6234000" />
       <workItem from="1606597967550" duration="3830000" />
       <workItem from="1607797710301" duration="8000" />
-      <workItem from="1607797729192" duration="43587000" />
+      <workItem from="1607797729192" duration="48269000" />
+      <workItem from="1608645366012" duration="527000" />
     </task>
     <servers />
   </component>
@@ -168,8 +170,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="960" y="436" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1608645882609">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="960" y="436" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1608645882609" />
     <state x="937" y="328" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607961621047">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

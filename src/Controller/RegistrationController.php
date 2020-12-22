@@ -30,6 +30,13 @@ class RegistrationController extends AbstractController
 
         $orgs = $stmt->fetchAll();
         dump($orgs);
+        $sql = 'select T_EP_ORGANIZATION_EP_ID from teporganization';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $orgs2 = $stmt->fetchAll();
+        dump($orgs2);
 
         $form = $this->createFormBuilder()
             ->add('username')
@@ -53,9 +60,10 @@ class RegistrationController extends AbstractController
             ])
             ->add('organization_id', ChoiceType::class, array(
                 'label' => 'Organization',
-                'choices' => array($orgs),
-                'choice_label' => function ($orgs, $key, $index) {
-                    return strtoupper($orgs);
+                'choices' => [ $orgs ],
+                'choice_label' => function ($orgs, $key, $value) {
+//                    return strtoupper($orgs2);
+                    return '';
                 },
             ))
             ->getForm()
