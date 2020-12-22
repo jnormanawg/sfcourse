@@ -9,10 +9,12 @@
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if is_granted('ROLE_ADMIN') %}
         <a class="navbar-brand" href="{{ path('users') }}">Admin Users</a>
         <a class="navbar-brand" href="{{ path('posts') }}">Admin Posts</a>
             <a class="navbar-brand" href="{{ path('sites') }}">Sites</a>
             <a class="navbar-brand" href="{{ path('organization') }}">Organizations</a>
+        {% endif %}
         {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
